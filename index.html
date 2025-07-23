@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurveySSolutions - Design System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta de colores minimalista */
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #06b6d4;
+            
+            /* Grises neutros */
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            
+            /* Tipografía */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Espaciado */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            
+            /* Bordes y sombras */
+            --border-radius: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* Componentes personalizados */
+        .card-modern {
+            border: none;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .card-modern:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .btn-modern {
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary-modern {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+        }
+
+        .btn-primary-modern:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-control-modern {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .form-control-modern:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+        }
+
+        .sidebar-modern {
+            background: white;
+            border-right: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-link-modern {
+            color: var(--gray-600);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            margin: 0.25rem 0;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-link-modern:hover {
+            background-color: var(--gray-100);
+            color: var(--primary);
+        }
+
+        .nav-link-modern.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .header-modern {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .badge-modern {
+            padding: 0.375rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .table-modern {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .table-modern th {
+            background-color: var(--gray-50);
+            border: none;
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .table-modern td {
+            border: none;
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .table-modern tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .progress-modern {
+            height: 8px;
+            border-radius: 9999px;
+            background-color: var(--gray-200);
+        }
+
+        .progress-bar-modern {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 9999px;
+        }
+
+        .modal-modern .modal-content {
+            border: none;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .alert-modern {
+            border: none;
+            border-radius: var(--border-radius);
+            border-left: 4px solid;
+        }
+
+        .alert-info-modern {
+            background-color: rgb(6 182 212 / 0.1);
+            border-left-color: var(--info);
+            color: var(--info);
+        }
+
+        .floating-action {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border: none;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        /* Animaciones suaves */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --gray-50: #0f172a;
+                --gray-100: #1e293b;
+                --gray-200: #334155;
+                --gray-800: #f1f5f9;
+            }
+        }
+
+        /* Responsive utilities */
+        @media (max-width: 768px) {
+            .sidebar-modern {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar-modern.show {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <!-- Header moderno -->
+        <header class="header-modern py-3 px-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn d-lg-none" type="button">
+                        <i class="bi bi-list fs-4"></i>
+                    </button>
+                    <h1 class="h4 mb-0 fw-bold">SurveySSolutions</h1>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-2"></i>
+                            Usuario
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Configuración</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="row g-0">
+            <!-- Sidebar moderno -->
+            <div class="col-lg-3 col-xl-2">
+                <div class="sidebar-modern vh-100 p-3">
+                    <nav>
+                        <a href="#" class="nav-link-modern active">
+                            <i class="bi bi-speedometer2"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="nav-link-modern">
+                            <i class="bi bi-clipboard-data"></i>
+                            Encuestas
+                        </a>
+                        <a href="#" class="nav-link-modern">
+                            <i class="bi bi-question-circle"></i>
+                            Preguntas
+                        </a>
+                        <a href="#" class="nav-link-modern">
+                            <i class="bi bi-chat-left-text"></i>
+                            Respuestas
+                        </a>
+                        <a href="#" class="nav-link-modern">
+                            <i class="bi bi-bar-chart"></i>
+                            Resultados
+                        </a>
+                        <a href="#" class="nav-link-modern">
+                            <i class="bi bi-people"></i>
+                            Usuarios
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="col-lg-9 col-xl-10">
+                <main class="p-4">
+                    <!-- Stats Cards -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <p class="mb-1 opacity-75">Total Encuestas</p>
+                                        <h3 class="mb-0 fw-bold">24</h3>
+                                    </div>
+                                    <i class="bi bi-clipboard-data fs-2 opacity-50"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-modern p-3">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <p class="mb-1 text-muted">Respuestas</p>
+                                        <h3 class="mb-0 fw-bold text-success">1,234</h3>
+                                    </div>
+                                    <i class="bi bi-chat-left-text fs-2 text-success"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-modern p-3">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <p class="mb-1 text-muted">Usuarios Activos</p>
+                                        <h3 class="mb-0 fw-bold text-info">89</h3>
+                                    </div>
+                                    <i class="bi bi-people fs-2 text-info"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-modern p-3">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <p class="mb-1 text-muted">Completadas</p>
+                                        <h3 class="mb-0 fw-bold text-warning">76%</h3>
+                                    </div>
+                                    <i class="bi bi-pie-chart fs-2 text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla moderna -->
+                    <div class="card-modern">
+                        <div class="card-body p-0">
+                            <div class="d-flex justify-content-between align-items-center p-4 border-bottom">
+                                <h5 class="mb-0 fw-bold">Encuestas Recientes</h5>
+                                <button class="btn btn-primary-modern btn-sm">
+                                    <i class="bi bi-plus-circle me-2"></i>
+                                    Nueva Encuesta
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-modern mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Título</th>
+                                            <th>Tipo</th>
+                                            <th>Estado</th>
+                                            <th>Respuestas</th>
+                                            <th>Creada</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Satisfacción del Cliente</div>
+                                                <small class="text-muted">Evaluación trimestral</small>
+                                            </td>
+                                            <td><span class="badge-modern bg-primary">Satisfacción</span></td>
+                                            <td><span class="badge-modern bg-success">Activa</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="progress-modern flex-grow-1" style="width: 60px;">
+                                                        <div class="progress-bar-modern" style="width: 75%"></div>
+                                                    </div>
+                                                    <small class="text-muted">45/60</small>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <small class="text-muted">2 días atrás</small>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex gap-1">
+                                                    <button class="btn btn-sm btn-outline-primary">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="fw-semibold">Evaluación de Desempeño</div>
+                                                <small class="text-muted">Revisión anual</small>
+                                            </td>
+                                            <td><span class="badge-modern bg-info">Desempeño</span></td>
+                                            <td><span class="badge-modern bg-warning">Borrador</span></td>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="progress-modern flex-grow-1" style="width: 60px;">
+                                                        <div class="progress-bar-modern" style="width: 20%"></div>
+                                                    </div>
+                                                    <small class="text-muted">5/25</small>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <small class="text-muted">5 días atrás</small>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex gap-1">
+                                                    <button class="btn btn-sm btn-outline-primary">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-secondary">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert moderno -->
+                    <div class="alert alert-modern alert-info-modern mt-4" role="alert">
+                        <div class="d-flex">
+                            <i class="bi bi-info-circle me-3 fs-5"></i>
+                            <div>
+                                <h6 class="alert-heading fw-semibold mb-1">Sistema actualizado</h6>
+                                Se han agregado nuevas funcionalidades para la gestión de encuestas.
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="floating-action" title="Nueva Encuesta">
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Efectos de animación suaves
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de entrada para las cards
+            const cards = document.querySelectorAll('.card-modern, .stats-card');
+            cards.forEach((card, index) => {
+                card.classList.add('fade-in');
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Efecto hover para botones
+            const buttons = document.querySelectorAll('.btn-modern');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Responsive sidebar toggle
+            const sidebarToggle = document.querySelector('.btn.d-lg-none');
+            const sidebar = document.querySelector('.sidebar-modern');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
