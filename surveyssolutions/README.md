@@ -1,69 +1,35 @@
-# React + TypeScript + Vite
+# SurveySSolutions - Sistema de Gestión de Encuestas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SurveySSolutions es una solución completa para la gestión de encuestas, diseñada con Laravel + PostgreSQL en el backend y React 18 + Vite + Bootstrap 5.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19.1  (Vite)
+- Bootstrap 5
+- Axios
+- React Router DOM
+- Context API (gestión de sesión)
+- Hooks personalizados
 
-## Expanding the ESLint configuration
+## Correr el proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clona el repositorio
+    ```sh
+    git clone https://github.com/tu-usuario/surveyssolutions.git
+    cd surveyssolutions
+    ```
+2. Instala las dependencias: `npm install`
+3. Corre el servidor: `npm run dev`
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Flujo de autenticación (Context API)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+A través de un contexto para la autenticación, hacemos la gestión de usuarios, el token generado persiste gracias al LocalStorage.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+##  Pendiente / Mejora futura
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Mensajes de error más detallados
+- Mejor manejo de estados de carga y errores
+- Paginación y búsqueda de encuestas
+- Tests unitarios con Jest
