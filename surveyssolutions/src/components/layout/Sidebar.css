@@ -1,0 +1,10 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  top: 56px; /* altura del Header */
+  left: 0;
+  background-color: #343a40;
+  overflow-y: auto;
+  z-index: 1000;
+}
